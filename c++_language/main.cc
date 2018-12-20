@@ -1,10 +1,6 @@
 #include <iostream>
-#include <vector>
-#include <string>
-#include <future>
-#include <thread> //std::this_thread::sleep_for
-#include <chrono> //std::chrono::seconds
-#include "thread_pool.h"
+#include "thread_pool.hpp"
+
 
 int main() {
   ThreadPool pool(4);  
@@ -17,10 +13,10 @@ int main() {
               std::this_thread::sleep_for(std::chrono::seconds(1));
               //然后继续输出并返回执行情况
               std::cout << "world " << i << std::endl;
-              return std::string("---thread") + std::to_string(i) + std::string("finished---");
+              return std::string("---thread ") + std::to_string(i) + std::string(" finished---");
             }
         )//end enqueue
-    )//end empace_back
+    );//end empace_back
   }//end for
 
   //输出线程执行结果
