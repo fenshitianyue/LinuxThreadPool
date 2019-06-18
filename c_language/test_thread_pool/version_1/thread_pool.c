@@ -85,7 +85,7 @@ void thread_pool_do_task(struct task* t){
 }
 
 //线程函数
-void* thread_pool_routine(void* thread_param){
+void* thread_routine(void* thread_param){
   printf("thread NO.%ld start.\n", pthread_self());
   while(thread_running){ //thread_running == threadinfo._thread_running -> true
     struct task* current = NULL;
