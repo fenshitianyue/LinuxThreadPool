@@ -18,9 +18,12 @@ void init_thread_pool(int thread_num){
   threadinfo._tasks = NULL;
 
   thread_running = 1;
+  
+  threadinfo._thread_id = (pthread_t*)malloc(sizeof(pthread_t) * thread_num);
 
   //创建 thread_num 个线程
-  for(int i = 0; i < thread_num; ++i){
+  int i;
+  for(i = 0; i < thread_num; ++i){
     pthread_create(&threadinfo._thread_id[i], NULL, thread_routine, NULL);
   }
 }
