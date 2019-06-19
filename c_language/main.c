@@ -19,7 +19,7 @@ int main(void)
 	int i =0;
 	for(i = 0;i < 10; i++)
 	{
-		int *p = malloc(sizeof(int));
+		int *p = (int*)malloc(sizeof(int));
 		*p = i;
 		threadpool_add(&pool, route, p);
 	}
