@@ -64,18 +64,18 @@ void *myroute(void *arg)
 void threadpool_add(threadpool_t *pool, void*(*pf)(void *), void *arg)
 {
 	//创建任务节点
-	task_t* new = (task_t*)malloc(sizeof(task_t));
-	new->pfun = pf;
-	new->arg = arg;
-	new->next = NULL;
+	task_t* _new = (task_t*)malloc(sizeof(task_t));
+	_new->pfun = pf;
+	_new->arg = arg;
+	_new->next = NULL;
 	
 	//对任务池的操作要上锁
-	if(pool->first == NULL)}{
-		pool->first = new;
+	if(pool->first == NULL){
+		pool->first = _new;
 	}else{
-		pool->tail->next = new;
+		pool->tail->next = _new;
 	}
-	pool->tail = new;
+	pool->tail = _new;
 	if(pool->idle > 0){
 		condition_signal(&pool->cond);
 	}else if(pool->counter < pool->max_thread){
